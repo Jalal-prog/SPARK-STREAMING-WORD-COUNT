@@ -24,4 +24,7 @@ $ nc -lk 9999
 
 // make a note of the time of the result displayed to open that particular file into the hdfs output path
 // To stop the SPARK STREAMING console pres "Ctrl+C"
-// Go to the HDFS path ("hdfs://localhost:8020/PATH") to check the result 
+// Go to the HDFS path ("hdfs://localhost:8020/PATH") to check the result.
+
+// Similarly we can change the hdfs path to the local path to save the output. 
+
