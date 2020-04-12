@@ -1,0 +1,28 @@
+// After starting the scala-spark shell ($ spark-shell)
+// Below is the API for word count in SPARK STREAMING CONTEXT through loading a data file on one HDFS path 
+and saving the result into another HDFS path.
+
+scala> //cutting off 'scala>' for the below codes for easy copy.
+
+import org.apache.spark.{SparkContext, SparkConf}
+import org.apache.spark.streaming.{Seconds, StreamingContext}
+import org.apache.spark.storage.StorageLevel
+import org.apache.log4j.{Level, Logger}
+Logger.getRootLogger.setLevel(Level.WARN)
+val ssc = new StreamingContext(sc, Seconds(5))
+val lines = ssc.textFileStream("one-HDFS-Path")
+val words = lines flatMap {line => line.split(" ")}
+val wordCounts = words.countByValue()
+wordCounts.saveAsTextFiles("another-HDFS-Path")
+wordCounts.print()
+ssc.start()                        //This will start the spark streaming
+
+//Open another console and copy any input file to the one-HDFS-PATH mentioned above.
+// Just put some text file under that HDFS path
+
+$ hadoop fs -put sample.json /HDFS-Path
+
+// The ouput will be displyed into the SPARK STREAMING console which is running.
+// make a note of the time of the result displayed to open that particular file into the hdfs output path
+// To stop the SPARK STREAMING console pres "Ctrl+C"
+// Go to the another-HDFS-Path ("hdfs://localhost:8020/PATH") to check the result 
