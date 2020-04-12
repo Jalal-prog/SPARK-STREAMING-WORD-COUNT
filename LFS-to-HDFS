@@ -19,7 +19,7 @@ ssc.start()                        //This will start the spark streaming
 //Open another console and copy any input file to the LFS-PATH mentioned above.
 // Just put some text under the LFS path
 
-$ hadoop fs -put sample.txt into the LFS-path
+$ cp sample.txt to LFS path mentioned above
 
 // The ouput will be displyed into the SPARK STREAMING console which is running.
 // make a note of the time of the result displayed to open that particular file into the hdfs output path
